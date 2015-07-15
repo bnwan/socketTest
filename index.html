@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+    </head>
+    <body>
+        <script>
+          var url = 'http://localhost:8085';
+
+          var notification = io.connect(url + '/notification');
+
+          notification.on('connect', function(){
+            console.log('connected to notifications channel');
+          });
+
+          notification.on('tick', function(data){
+            console.log(data.tick);
+          });
+
+          notification.on('user:count', function(data){
+            console.log('user count: ', data.count);
+          });
+        </script>
+    </body>
+</html>
